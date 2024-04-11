@@ -1,0 +1,6 @@
+[submodule "FFXIV_ACT_Plugin_CN"]
+	path = FFXIV_ACT_Plugin_CN
+	url = https://github.com/NewMoe-Technology/FFXIV_ACT_Plugin_CN
+[submodule "ACT.DieMoe.DLibs"]
+	path = DLibs
+	url = https://github.com/NewMoe-Technology/ACT.DieMoe.DLibs
