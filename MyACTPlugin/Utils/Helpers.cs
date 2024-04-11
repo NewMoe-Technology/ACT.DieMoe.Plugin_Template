@@ -16,7 +16,6 @@ namespace MyACTPlugin.Utils
 {
     internal static class Helpers
     {
-        internal const int MAX_PATH = 127;
         internal static PluginMain _plugin;
         internal static PluginPage _configPage;
         internal static TabPage _tabPage;
