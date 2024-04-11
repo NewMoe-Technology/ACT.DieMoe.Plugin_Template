@@ -16,9 +16,6 @@ namespace MyACTPlugin.Utils
 {
     internal static class Helpers
     {
-        internal static string cachePath;
-        private static string settingsFile = Path.Combine(ActGlobals.oFormActMain.AppDataFolder.FullName, "Config\\TTS_CN_Plugin.config.xml");
-
         internal const int MAX_PATH = 127;
         internal static PluginMain _plugin;
         internal static PluginPage _configPage;
