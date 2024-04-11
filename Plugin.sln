@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32421.90
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyACTPlugin", "MyACTPlugin\MyACTPlugin.csproj", "{BD1DE001-BA1C-42FF-9A63-32D45E84EA04}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BD1DE001-BA1C-42FF-9A63-32D45E84EA04}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BD1DE001-BA1C-42FF-9A63-32D45E84EA04}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BD1DE001-BA1C-42FF-9A63-32D45E84EA04}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BD1DE001-BA1C-42FF-9A63-32D45E84EA04}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {EB93DC5F-DEDC-4573-8393-6656A7B0A2FC}
+	EndGlobalSection
+EndGlobal
