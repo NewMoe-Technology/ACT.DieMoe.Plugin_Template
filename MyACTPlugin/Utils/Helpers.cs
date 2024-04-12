@@ -1,5 +1,8 @@
 using System;
+using System.Diagnostics;
+using System.IO;
 using System.Windows.Forms;
+using Advanced_Combat_Tracker;
 
 namespace MyACTPlugin.Utils
 {
@@ -8,6 +11,105 @@ namespace MyACTPlugin.Utils
         internal static PluginMain _plugin;
         internal static PluginPage _configPage;
         internal static TabPage _tabPage;
+        internal static FFXIV_ACT_Plugin.FFXIV_ACT_Plugin ffxivPlugin;
+
+        /// <summary>
+        /// 添加ACT日志行。
+        /// </summary>
+        /// <param name="type"></param>
+        /// <param name="message"></param>
+        public static void AddLogLine(string type, string message)
+        {
+            var logline = $"00|{DateTime.Now:O}|0|{type}:{message}|";
+            ActGlobals.oFormActMain.ParseRawLogLine(isImport: false, DateTime.Now, logline ?? "");
+        }
+
+        /// <summary>
+        /// 获取游戏客户端编译日期版本号。
+        /// </summary>
+        public static string GetGameVersion(Process process)
+        {
+            var gamePath = Path.GetDirectoryName(process.MainModule.FileName);
+            gamePath = Path.Combine(gamePath, "ffxivgame.ver");
+            //string version = "2000.01.01.0000.0000";
+            var version = File.ReadAllText(gamePath);
+            return version;
+        }
+
+        /// <summary>
+        /// 获取FFXIV解析插件的区域信息。
+        /// </summary>
+        /// <param name="ffxiv_plugin"></param>
+        /// <returns></returns>
+        public static string GetRegion(FFXIV_ACT_Plugin.FFXIV_ACT_Plugin ffxiv_plugin)
+        {
+            switch (GetLanguageId(ffxiv_plugin))
+            {
+                case 1:
+                //return "en";
+                case 2:
+                //return "fr";
+                case 3:
+                //return "de";
+                case 4:
+                    //return "ja";
+                    return "intl";
+                case 5:
+                    return "cn";
+                case 6:
+                    return "ko";
+                default:
+                    return null;
+            }
+        }
+
+        /// <summary>
+        /// 获取FFXIV解析插件语言信息。
+        /// </summary>
+        /// <param name="ffxiv_plugin"></param>
+        /// <returns></returns>
+        public static string GetLocaleString(FFXIV_ACT_Plugin.FFXIV_ACT_Plugin ffxiv_plugin)
+        {
+            switch (GetLanguageId(ffxiv_plugin))
+            {
+                case 1:
+                    return "en";
+                case 2:
+                    return "fr";
+                case 3:
+                    return "de";
+                case 4:
+                    return "ja";
+                case 5:
+                    return "cn";
+                case 6:
+                    return "ko";
+                default:
+                    return null;
+            }
+        }
+
+        /// <summary>
+        /// 直接获取原始的FFXIV解析插件语言ID。
+        /// </summary>
+        /// <param name="ffxiv_plugin"></param>
+        /// <returns></returns>
+        public static int GetLanguageId(FFXIV_ACT_Plugin.FFXIV_ACT_Plugin ffxiv_plugin)
+        {
+            if (ffxiv_plugin == null)
+            {
+                if (ffxivPlugin == null) return 0;
+                ffxiv_plugin = ffxivPlugin;
+            }
+            try
+            {
+                return (int)ffxiv_plugin.DataRepository.GetSelectedLanguageID();
+            }
+            catch (Exception e)
+            {
+                return 0;
+            }
+        }
     }
 
     public static class Extension
@@ -103,6 +205,17 @@ namespace MyACTPlugin.Utils
                 target.AppendText($"\n[{DateTime.Now.ToLongTimeString()}] {text}");
                 target.ScrollToCaret();
             }
+        }
+    }
+
+    [AttributeUsage(AttributeTargets.Method)]
+    public class EventNameAttribute : Attribute
+    {
+        public string EventName { get; }
+
+        public EventNameAttribute(string eventName)
+        {
+            EventName = eventName;
         }
     }
 }
