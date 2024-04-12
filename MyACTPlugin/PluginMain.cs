@@ -54,6 +54,18 @@ namespace MyACTPlugin
         }
 
         /// <summary>
+        /// 获取插件目录，如果插件尚未加载或卸载后仍在运行则会抛错。
+        /// </summary>
+        /// <returns>插件DLL所处的目录</returns>
+        /// <exception cref="InvalidOperationException">如果插件未被加载或卸载后仍在运行</exception>
+        public string GetPluginDirectory()
+        {
+            var plugin = ActGlobals.oFormActMain.ActPlugins.Where(x => x.pluginObj == this).FirstOrDefault();
+            if (plugin is null) throw new InvalidOperationException("Plugin is not loaded by ACT");
+            return Path.GetDirectoryName(plugin.pluginFile.FullName);
+        }
+
+        /// <summary>
         /// 附加到解析插件
         /// </summary>
         public void Attach()
