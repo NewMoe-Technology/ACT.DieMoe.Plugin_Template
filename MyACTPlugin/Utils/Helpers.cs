@@ -8,9 +8,15 @@ namespace MyACTPlugin.Utils
 {
     internal static class Helpers
     {
+        /// <summary>
+        /// 插件自身
+        /// </summary>
         internal static PluginMain _plugin;
         internal static PluginPage _configPage;
         internal static TabPage _tabPage;
+        /// <summary>
+        /// 解析插件实例
+        /// </summary>
         internal static FFXIV_ACT_Plugin.FFXIV_ACT_Plugin ffxivPlugin;
 
         /// <summary>
